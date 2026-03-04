@@ -1,4 +1,4 @@
-# My_docker_env
+# Private_docker_env
 ## Connecton establishment for your github from your computer
 
 ### Installation of "git" (mandatory)
