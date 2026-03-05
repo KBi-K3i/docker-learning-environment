@@ -1,19 +1,64 @@
 # Private_docker_env
-## Connecton establishment for your github from your computer
+## Establishing a connection to GitHub from your computer
 
-### Installation of "git" (mandatory)
-You need to install "git" in your computer.
-- Please refer git install guide : https://git-scm.com/install/
+### Installation of Git
 
-After installation of git, you need to set additional configuration.
+This command installs Git along with bash-completion, which provides tab completion for Git commands such as branch names.
 
-</br>
+```bash
+# WSL:Ubuntu
+sudo apt update
+sudo apt install git bash-completion
 
-### Installation of "bash-completion" (optional)
-This enables tab completion for git commands, including branch names.
-  - (WSL:Ubuntu) sudo apt update
-  - (WSL:Ubuntu) sudo apt install git bash-completion
+# After installing git bash-completion, please edit `~/.bashrc` file.
+vi ~/.bashrc
+```
 
-</br>
+Please copy and paste following lines to avoid mistyping in last line of `.bashrc` file.
 
-### Installation of "bash-prompt" (optional)
+```bash
+# Git prompt with colors
+if [ -f /etc/bash_completion.d/git-prompt ]; then
+    source /etc/bash_completion.d/git-prompt
+    GIT_PS1_SHOWDIRTYSTATE=1
+    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+fi
+```
+
+After installing Git, you need to set additional configuration.
+
+### Git configuration
+
+1. Set your name and email for Git commits
+  - This information will be recorded as the commit author when you run `git commit`.
+  
+    ```bash
+    # WSL:Ubuntu
+    git config --global user.name "your name"
+    git config --global user.email "your email"
+    ```
+
+2. Change the default branch name to `main`
+  - `main` is now the standard default branch name, replacing `master`.
+    
+    ```bash
+    # WSL:Ubuntu
+    git config --global init.defaultBranch main
+    ```
+
+3. Change the default push behavior
+  - After this configuration, running `git push` will push the current branch to GitHub without specifying the branch name.
+    
+    ```bash
+    # WSL:Ubuntu
+    git config --global push.default current
+    ```
+
+4. Automatically clean up deleted remote branches
+  - When a branch is deleted on the remote repository, this setting automatically removes the corresponding `remote-tracking branch` during `git fetch`.
+  - This only deletes `remote-tracking branches`; `local branches` are not deleted.
+
+     ```bash
+     # WSL:Ubuntu
+     git config --global fetch.prune true
+     ```
