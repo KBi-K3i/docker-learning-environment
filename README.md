@@ -1,7 +1,23 @@
 # Private_docker_env
-## Establishing a connection to GitHub from your computer
+## Installation of WSL
+### 1. Official installation instructions
+For the latest installation instructions, please refer to the official Microsoft documentation: 
+https://learn.microsoft.com/windows/wsl/install
 
-### Installation of Git
+
+### 2. Install WSL using PowerShell
+On Windows 10 (version 2004 and later) and Windows 11, you can install WSL using the following PowerShell command:
+```powershell
+# PowerShell
+wsl --install
+```
+
+### 3. Post-installation setup
+After installing WSL, please refer to the following document to set up your environment: 
+https://learn.microsoft.com/windows/wsl/setup/environment
+
+
+## Installation of Git
 
 This command installs Git along with bash-completion, which provides tab completion for Git commands such as branch names.
 
@@ -11,7 +27,7 @@ sudo apt update
 sudo apt install git bash-completion
 
 # After installing git bash-completion, please edit `~/.bashrc` file.
-vi ~/.bashrc
+nano ~/.bashrc
 ```
 
 Please copy and paste following lines to avoid mistyping in last line of `.bashrc` file.
@@ -62,3 +78,5 @@ After installing Git, you need to set additional configuration.
      # WSL:Ubuntu
      git config --global fetch.prune true
      ```
+
+## Establishing a connection to GitHub from your computer
