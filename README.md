@@ -1,4 +1,4 @@
-# Private_docker_env
+# docker-learning-environment
 ## Installation of WSL
 ### 1. Official installation instructions
 For the latest installation instructions, please refer to the official Microsoft documentation: 
