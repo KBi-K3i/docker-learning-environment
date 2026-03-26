@@ -233,7 +233,7 @@ Install the following VS Code extensions:
 1. Open Visual Studio Code
 2. Open the **Containers** view from the sidebar
 3. Right-click the target container
-4. Select **Attach Visual Studio Code**
+4. Select `Attach Visual Studio Code`
 
 ### 6.3. Open the working directory
 
