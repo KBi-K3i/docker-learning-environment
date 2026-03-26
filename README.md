@@ -213,6 +213,7 @@ docker rm python3.13-practice-container
 
 Remove the image (optional):
 ```bash
+# WSL:Ubuntu
 docker rmi python:3.13-practice-image
 ```
 
