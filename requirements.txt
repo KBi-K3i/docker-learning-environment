@@ -3,3 +3,4 @@ python-dotenv
 Flask-SQLAlchemy
 wtforms==3.2.1
 email_validator==2.3.0
+Flask‑WTF==1.2.2
