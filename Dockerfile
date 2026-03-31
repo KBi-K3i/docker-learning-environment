@@ -16,15 +16,15 @@ COPY requirements.txt ./
 # （任意）condaを高速化＆安定化
 RUN conda config --set channel_priority strict
 
-# Python 3.13 の環境を作る（環境名: app）
+# Python 3.13 の環境を作る（環境名: flask_env）
 # ※ 3.13 が解決できないタイミングもあるため、その場合は 3.12 に落とすと確実
-RUN conda create -y -n app python=3.13 && \
+RUN conda create -y -n flask_env python=3.13 && \
     conda clean -afy
 
 # conda環境を使って pip install
 # 重要: conda環境に入ったpipで入れる
-RUN conda run -n app python -m pip install --upgrade pip && \
-    conda run -n app pip install --no-cache-dir -r requirements.txt
+RUN conda run -n flask_env python -m pip install --upgrade pip && \
+    conda run -n flask_env pip install --no-cache-dir -r requirements.txt
 
 # Pythonのstdout/stderrをバッファリングせず、docker logs等に即時出力されるようにする
 ENV PYTHONUNBUFFERED=1
@@ -32,6 +32,10 @@ ENV PYTHONUNBUFFERED=1
 # 今いるフォルダの中身を、コンテナの作業ディレクトリに全部コピーする
 # COPY . .
 # docker run 実行時に、--volumeしたディレクトリで隠れるため、COPY不要。
+
+# flask_env をデフォルトにする
+RUN conda init bash
+RUN echo "conda activate flask_env" >> /root/.bashrc
 
 # sleep infinity を実行し、コンテナを常駐させる（VS Code からコンテナにつなぐ用途で使用）
 CMD ["sleep", "infinity"]
